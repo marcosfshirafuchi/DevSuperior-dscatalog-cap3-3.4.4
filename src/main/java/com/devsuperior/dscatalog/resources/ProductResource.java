@@ -2,7 +2,6 @@ package com.devsuperior.dscatalog.resources;
 
 import java.net.URI;
 
-import com.devsuperior.dscatalog.projections.ProjectProjection;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -24,11 +23,11 @@ public class ProductResource {
 	private ProductService service;
 	
 	@GetMapping
-	public ResponseEntity<Page<ProjectProjection>> findAll(
+	public ResponseEntity<Page<ProductDTO>> findAll(
 			@RequestParam(value = "name", defaultValue = "") String name,
 			@RequestParam(value = "categoryId", defaultValue = "0")String categoryId,
 			Pageable pageable) {
-		Page<ProjectProjection> list = service.findAllPaged(name, categoryId,pageable);
+		Page<ProductDTO> list = service.findAllPaged(name, categoryId,pageable);
 		return ResponseEntity.ok().body(list);
 	}
 
